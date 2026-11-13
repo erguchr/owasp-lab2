@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои задачи</title>
+</head>
+<body>
+    <h2>Список задач</h2>
+    <p><a href="/logout">Выйти из аккаунта</a></p>
+
+    <form method="POST" action="/">
+        <input type="text" name="content" placeholder="Новая задача..." required>
+        <button type="submit">Добавить</button>
+    </form>
+
+    <hr>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task[1] | safe }}
+                    <form method="POST" action="/delete/{{ task[0] }}" style="display:inline;">
+                <button type="submit">Удалить</button>
+                    </form>
+
+            </li>
+        {% else %}
+            <li>Задач пока нет.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
